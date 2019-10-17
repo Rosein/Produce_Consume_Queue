@@ -26,11 +26,6 @@ uint32_t * end( PCQueue_t * queue )
     return begin( queue ) + queue -> max_size;    
 }
 
-uint32_t * NOTHING_TO_CONSUME( PCQueue_t * queue )
-{
-    return begin( queue ) + queue -> max_size + 2;    
-}
-
 bool is_empty( PCQueue_t * queue )
 {
     return 0 == queue -> cur_size;
@@ -44,7 +39,7 @@ void init( PCQueue_t * queue, int max_size )
     if( !queue -> arr )
         perror( "Bad alloc in init PCQueue_t." );
     queue -> producer = begin( queue );
-    queue -> consumer = NOTHING_TO_CONSUME( queue );
+    queue -> consumer = NULL;
 }
 
 void produce( PCQueue_t * queue, uint32_t new_elem )
@@ -85,6 +80,6 @@ uint32_t consume( PCQueue_t * queue )
             queue -> consumer = begin( queue );
     }
     else
-        queue -> consumer = NOTHING_TO_CONSUME( queue );
+        queue -> consumer = NULL;
     return eaten;
 }

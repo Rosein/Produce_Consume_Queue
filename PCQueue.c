@@ -1,4 +1,5 @@
 #include "PCQueue.h"
+
 void ConsumeFirstAfterTwiceProduce ()
 {
     PCQueue_t sut;
@@ -36,7 +37,7 @@ void ConsumeAllAfterProducerJump ()
     for( int i = 0; i < 5; i++ )
         consume( &sut );
     assert( sut.producer == begin( &sut ) );
-    assert( sut.consumer == NOTHING_TO_CONSUME( &sut ) );
+    assert( sut.consumer == NULL );
     printf("\033[0;32m[ OK ]\033[0m Passed: %s \n", __func__ ); 
 }
 
